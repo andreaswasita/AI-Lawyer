@@ -1,0 +1,469 @@
+{
+  "templates": [
+    {
+      "id": "surat-somasi",
+      "category": "general",
+      "name_id": "Surat Somasi (Teguran Hukum)",
+      "name_en": "Demand/Warning Letter (Somasi)",
+      "description_id": "Template surat somasi atau teguran hukum yang digunakan untuk memberikan peringatan resmi kepada pihak yang melanggar perjanjian atau kewajiban hukum sebelum menempuh jalur hukum.",
+      "description_en": "Legal demand/warning letter template used to formally warn a party who has breached an agreement or legal obligation before pursuing legal action.",
+      "legal_basis": "KUHPerdata Pasal 1238, 1243",
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 500000,
+        "max": 2000000,
+        "currency": "IDR",
+        "description": "Rp 500.000 - Rp 2.000.000 (jika melalui pengacara)"
+      },
+      "fields": [
+        {
+          "name": "nama_pengirim",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pengirim",
+          "label_en": "Sender Name"
+        },
+        {
+          "name": "alamat_pengirim",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pengirim",
+          "label_en": "Sender Address"
+        },
+        {
+          "name": "nama_penerima",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Penerima",
+          "label_en": "Recipient Name"
+        },
+        {
+          "name": "alamat_penerima",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Penerima",
+          "label_en": "Recipient Address"
+        },
+        {
+          "name": "perihal",
+          "type": "string",
+          "required": true,
+          "label_id": "Perihal",
+          "label_en": "Subject/Regarding"
+        },
+        {
+          "name": "nomor_somasi",
+          "type": "enum",
+          "required": true,
+          "label_id": "Somasi Ke-",
+          "label_en": "Somasi Number",
+          "options": ["1", "2", "3"],
+          "description": "Somasi ke-1 (peringatan pertama), ke-2 (peringatan kedua), ke-3 (peringatan terakhir)"
+        },
+        {
+          "name": "kronologi_masalah",
+          "type": "text",
+          "required": true,
+          "label_id": "Kronologi Masalah",
+          "label_en": "Problem Chronology"
+        },
+        {
+          "name": "dasar_hukum",
+          "type": "text",
+          "required": true,
+          "label_id": "Dasar Hukum",
+          "label_en": "Legal Basis"
+        },
+        {
+          "name": "tuntutan",
+          "type": "text",
+          "required": true,
+          "label_id": "Tuntutan/Permintaan",
+          "label_en": "Demands/Requests"
+        },
+        {
+          "name": "batas_waktu_pemenuhan",
+          "type": "string",
+          "required": true,
+          "label_id": "Batas Waktu Pemenuhan",
+          "label_en": "Compliance Deadline",
+          "default": "7 hari",
+          "description": "Biasanya 7-14 hari kalender"
+        },
+        {
+          "name": "konsekuensi_hukum",
+          "type": "text",
+          "required": true,
+          "label_id": "Konsekuensi Hukum",
+          "label_en": "Legal Consequences"
+        }
+      ]
+    },
+    {
+      "id": "surat-pernyataan",
+      "category": "general",
+      "name_id": "Surat Pernyataan",
+      "name_en": "Sworn Statement / Affidavit",
+      "description_id": "Template surat pernyataan yang dibuat oleh seseorang untuk menyatakan sesuatu hal secara resmi dan mengikat secara hukum, dengan atau tanpa sumpah.",
+      "description_en": "Sworn statement/affidavit template made by an individual to officially and legally declare something, with or without an oath.",
+      "legal_basis": "KUHPerdata Pasal 1875",
+      "complexity": "simple",
+      "estimated_cost": {
+        "min": 0,
+        "max": 500000,
+        "currency": "IDR",
+        "description": "Rp 0 - Rp 500.000 (biaya materai + legalisasi jika diperlukan)"
+      },
+      "fields": [
+        {
+          "name": "nama_pembuat",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pembuat Pernyataan",
+          "label_en": "Declarant Name"
+        },
+        {
+          "name": "nik_pembuat",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Pembuat",
+          "label_en": "Declarant ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_pembuat",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pembuat",
+          "label_en": "Declarant Address"
+        },
+        {
+          "name": "isi_pernyataan",
+          "type": "text",
+          "required": true,
+          "label_id": "Isi Pernyataan",
+          "label_en": "Statement Content"
+        },
+        {
+          "name": "tujuan_pernyataan",
+          "type": "string",
+          "required": true,
+          "label_id": "Tujuan Pernyataan",
+          "label_en": "Purpose of Statement"
+        },
+        {
+          "name": "bersedia_disumpah",
+          "type": "boolean",
+          "required": false,
+          "label_id": "Bersedia Disumpah",
+          "label_en": "Willing to Take Oath",
+          "default": true
+        },
+        {
+          "name": "sanksi_hukum",
+          "type": "boolean",
+          "required": false,
+          "label_id": "Bersedia Menerima Sanksi Hukum",
+          "label_en": "Willing to Accept Legal Sanctions",
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "surat-pengaduan-polisi",
+      "category": "general",
+      "name_id": "Surat Pengaduan / Laporan Polisi",
+      "name_en": "Police Report / Complaint Letter",
+      "description_id": "Template surat pengaduan atau laporan ke kepolisian mengenai tindak pidana yang dialami atau diketahui oleh pelapor, sesuai dengan KUHAP.",
+      "description_en": "Police report/complaint letter template regarding criminal offenses experienced or known by the reporter, in accordance with the Criminal Procedure Code.",
+      "legal_basis": "KUHAP Pasal 108",
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 0,
+        "max": 0,
+        "currency": "IDR",
+        "description": "Gratis (laporan polisi tidak dipungut biaya)"
+      },
+      "fields": [
+        {
+          "name": "nama_pelapor",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pelapor",
+          "label_en": "Reporter Name"
+        },
+        {
+          "name": "nik_pelapor",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Pelapor",
+          "label_en": "Reporter ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_pelapor",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pelapor",
+          "label_en": "Reporter Address"
+        },
+        {
+          "name": "nama_terlapor",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Terlapor",
+          "label_en": "Reported Person Name"
+        },
+        {
+          "name": "alamat_terlapor",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Terlapor",
+          "label_en": "Reported Person Address"
+        },
+        {
+          "name": "jenis_tindak_pidana",
+          "type": "string",
+          "required": true,
+          "label_id": "Jenis Tindak Pidana",
+          "label_en": "Type of Criminal Offense"
+        },
+        {
+          "name": "tempat_kejadian",
+          "type": "string",
+          "required": true,
+          "label_id": "Tempat Kejadian Perkara (TKP)",
+          "label_en": "Crime Scene Location"
+        },
+        {
+          "name": "waktu_kejadian",
+          "type": "string",
+          "required": true,
+          "label_id": "Waktu Kejadian",
+          "label_en": "Time of Incident"
+        },
+        {
+          "name": "kronologi_kejadian",
+          "type": "text",
+          "required": true,
+          "label_id": "Kronologi Kejadian",
+          "label_en": "Incident Chronology"
+        },
+        {
+          "name": "bukti_bukti",
+          "type": "text",
+          "required": false,
+          "label_id": "Bukti-Bukti",
+          "label_en": "Evidence"
+        },
+        {
+          "name": "saksi_saksi",
+          "type": "text",
+          "required": false,
+          "label_id": "Saksi-Saksi",
+          "label_en": "Witnesses"
+        },
+        {
+          "name": "kerugian",
+          "type": "text",
+          "required": false,
+          "label_id": "Kerugian yang Diderita",
+          "label_en": "Losses Suffered"
+        }
+      ]
+    },
+    {
+      "id": "surat-pengaduan-konsumen",
+      "category": "general",
+      "name_id": "Surat Pengaduan Konsumen",
+      "name_en": "Consumer Complaint Letter",
+      "description_id": "Template surat pengaduan konsumen kepada pelaku usaha atas produk atau jasa yang tidak sesuai, berdasarkan UU Perlindungan Konsumen.",
+      "description_en": "Consumer complaint letter template to business operators for non-conforming products or services, based on the Consumer Protection Law.",
+      "legal_basis": "UU No. 8/1999 tentang Perlindungan Konsumen, PP No. 58/2001",
+      "complexity": "simple",
+      "estimated_cost": {
+        "min": 0,
+        "max": 100000,
+        "currency": "IDR",
+        "description": "Rp 0 - Rp 100.000 (biaya pengiriman surat)"
+      },
+      "fields": [
+        {
+          "name": "nama_konsumen",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Konsumen",
+          "label_en": "Consumer Name"
+        },
+        {
+          "name": "alamat_konsumen",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Konsumen",
+          "label_en": "Consumer Address"
+        },
+        {
+          "name": "nama_pelaku_usaha",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pelaku Usaha",
+          "label_en": "Business Operator Name"
+        },
+        {
+          "name": "alamat_pelaku_usaha",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pelaku Usaha",
+          "label_en": "Business Operator Address"
+        },
+        {
+          "name": "produk_jasa",
+          "type": "string",
+          "required": true,
+          "label_id": "Produk/Jasa",
+          "label_en": "Product/Service"
+        },
+        {
+          "name": "tanggal_transaksi",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Transaksi",
+          "label_en": "Transaction Date"
+        },
+        {
+          "name": "nomor_transaksi",
+          "type": "string",
+          "required": false,
+          "label_id": "Nomor Transaksi/Invoice",
+          "label_en": "Transaction/Invoice Number"
+        },
+        {
+          "name": "keluhan",
+          "type": "text",
+          "required": true,
+          "label_id": "Keluhan",
+          "label_en": "Complaint"
+        },
+        {
+          "name": "kerugian",
+          "type": "text",
+          "required": true,
+          "label_id": "Kerugian",
+          "label_en": "Losses"
+        },
+        {
+          "name": "tuntutan",
+          "type": "text",
+          "required": true,
+          "label_id": "Tuntutan",
+          "label_en": "Demands"
+        },
+        {
+          "name": "batas_waktu",
+          "type": "string",
+          "required": true,
+          "label_id": "Batas Waktu Tanggapan",
+          "label_en": "Response Deadline",
+          "default": "14 hari"
+        },
+        {
+          "name": "lampiran_bukti",
+          "type": "text",
+          "required": false,
+          "label_id": "Lampiran Bukti",
+          "label_en": "Attached Evidence"
+        }
+      ]
+    },
+    {
+      "id": "perjanjian-perdamaian",
+      "category": "general",
+      "name_id": "Perjanjian Perdamaian",
+      "name_en": "Settlement Agreement",
+      "description_id": "Template perjanjian perdamaian yang dibuat oleh para pihak yang bersengketa untuk menyelesaikan perselisihan secara damai di luar pengadilan.",
+      "description_en": "Settlement agreement template made by disputing parties to resolve disputes amicably outside of court.",
+      "legal_basis": "KUHPerdata Pasal 1851-1864",
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 500000,
+        "max": 5000000,
+        "currency": "IDR",
+        "description": "Rp 500.000 - Rp 5.000.000 (jika melibatkan notaris/mediator)"
+      },
+      "fields": [
+        {
+          "name": "nama_pihak1",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pihak Pertama",
+          "label_en": "First Party Name"
+        },
+        {
+          "name": "alamat_pihak1",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pihak Pertama",
+          "label_en": "First Party Address"
+        },
+        {
+          "name": "nama_pihak2",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pihak Kedua",
+          "label_en": "Second Party Name"
+        },
+        {
+          "name": "alamat_pihak2",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pihak Kedua",
+          "label_en": "Second Party Address"
+        },
+        {
+          "name": "uraian_sengketa",
+          "type": "text",
+          "required": true,
+          "label_id": "Uraian Sengketa",
+          "label_en": "Dispute Description"
+        },
+        {
+          "name": "kesepakatan_damai",
+          "type": "text",
+          "required": true,
+          "label_id": "Kesepakatan Perdamaian",
+          "label_en": "Settlement Terms"
+        },
+        {
+          "name": "kompensasi",
+          "type": "text",
+          "required": false,
+          "label_id": "Kompensasi/Ganti Rugi",
+          "label_en": "Compensation"
+        },
+        {
+          "name": "jadwal_pelaksanaan",
+          "type": "text",
+          "required": true,
+          "label_id": "Jadwal Pelaksanaan",
+          "label_en": "Implementation Schedule"
+        },
+        {
+          "name": "klausul_non_litigasi",
+          "type": "boolean",
+          "required": true,
+          "label_id": "Klausul Non-Litigasi",
+          "label_en": "Non-Litigation Clause",
+          "default": true,
+          "description": "Para pihak sepakat tidak akan menempuh jalur hukum terkait sengketa ini"
+        },
+        {
+          "name": "konsekuensi_pelanggaran",
+          "type": "text",
+          "required": true,
+          "label_id": "Konsekuensi Pelanggaran",
+          "label_en": "Breach Consequences"
+        }
+      ]
+    }
+  ]
+}

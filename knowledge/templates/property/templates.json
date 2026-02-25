@@ -1,0 +1,464 @@
+{
+  "templates": [
+    {
+      "id": "perjanjian-sewa-menyewa",
+      "category": "property",
+      "name_id": "Perjanjian Sewa Menyewa",
+      "name_en": "Rental/Lease Agreement",
+      "description_id": "Template perjanjian sewa menyewa untuk properti dan aset, mencakup ketentuan harga, jangka waktu, hak dan kewajiban para pihak, serta ketentuan pengembalian objek sewa.",
+      "description_en": "Rental/lease agreement template for property and assets, covering price terms, duration, rights and obligations of parties, and return conditions of leased objects.",
+      "legal_basis": "KUHPerdata Pasal 1548-1600",
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 500000,
+        "max": 2000000,
+        "currency": "IDR",
+        "description": "Rp 500.000 - Rp 2.000.000"
+      },
+      "fields": [
+        {
+          "name": "nama_pemilik",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pemilik",
+          "label_en": "Owner Name"
+        },
+        {
+          "name": "nik_pemilik",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Pemilik",
+          "label_en": "Owner ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_pemilik",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pemilik",
+          "label_en": "Owner Address"
+        },
+        {
+          "name": "nama_penyewa",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Penyewa",
+          "label_en": "Tenant Name"
+        },
+        {
+          "name": "nik_penyewa",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Penyewa",
+          "label_en": "Tenant ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_penyewa",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Penyewa",
+          "label_en": "Tenant Address"
+        },
+        {
+          "name": "objek_sewa",
+          "type": "enum",
+          "required": true,
+          "label_id": "Jenis Objek Sewa",
+          "label_en": "Type of Leased Object",
+          "options": ["rumah", "apartemen", "ruko", "tanah", "kendaraan"]
+        },
+        {
+          "name": "alamat_objek",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Objek Sewa",
+          "label_en": "Leased Object Address"
+        },
+        {
+          "name": "deskripsi_objek",
+          "type": "text",
+          "required": true,
+          "label_id": "Deskripsi Objek Sewa",
+          "label_en": "Leased Object Description"
+        },
+        {
+          "name": "luas_objek",
+          "type": "string",
+          "required": true,
+          "label_id": "Luas Objek",
+          "label_en": "Object Area"
+        },
+        {
+          "name": "nomor_sertifikat",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Sertifikat",
+          "label_en": "Certificate Number"
+        },
+        {
+          "name": "jangka_waktu_sewa",
+          "type": "string",
+          "required": true,
+          "label_id": "Jangka Waktu Sewa",
+          "label_en": "Lease Duration"
+        },
+        {
+          "name": "tanggal_mulai",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Mulai",
+          "label_en": "Start Date"
+        },
+        {
+          "name": "tanggal_berakhir",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Berakhir",
+          "label_en": "End Date"
+        },
+        {
+          "name": "harga_sewa",
+          "type": "number",
+          "required": true,
+          "label_id": "Harga Sewa",
+          "label_en": "Rental Price",
+          "currency": "IDR"
+        },
+        {
+          "name": "cara_pembayaran",
+          "type": "enum",
+          "required": true,
+          "label_id": "Cara Pembayaran",
+          "label_en": "Payment Method",
+          "options": ["bulanan", "tahunan", "di muka"]
+        },
+        {
+          "name": "uang_jaminan",
+          "type": "number",
+          "required": false,
+          "label_id": "Uang Jaminan/Deposit",
+          "label_en": "Security Deposit",
+          "currency": "IDR"
+        },
+        {
+          "name": "biaya_perawatan",
+          "type": "string",
+          "required": false,
+          "label_id": "Biaya Perawatan",
+          "label_en": "Maintenance Cost"
+        },
+        {
+          "name": "larangan_penyewa",
+          "type": "text",
+          "required": false,
+          "label_id": "Larangan Penyewa",
+          "label_en": "Tenant Restrictions"
+        },
+        {
+          "name": "ketentuan_perpanjangan",
+          "type": "text",
+          "required": false,
+          "label_id": "Ketentuan Perpanjangan",
+          "label_en": "Renewal Terms"
+        },
+        {
+          "name": "kondisi_pengembalian",
+          "type": "text",
+          "required": false,
+          "label_id": "Kondisi Pengembalian",
+          "label_en": "Return Conditions"
+        }
+      ]
+    },
+    {
+      "id": "perjanjian-jual-beli-tanah",
+      "category": "property",
+      "name_id": "Perjanjian Jual Beli Tanah (PPJB)",
+      "name_en": "Land Sale and Purchase Agreement (PPJB)",
+      "description_id": "Template perjanjian pengikatan jual beli tanah, mencakup identitas para pihak, deskripsi tanah, harga, cara pembayaran, pajak, dan jaminan bebas sengketa.",
+      "description_en": "Land sale and purchase binding agreement template, covering party identities, land description, price, payment terms, taxes, and dispute-free guarantees.",
+      "legal_basis": "UUPA No. 5/1960, PP No. 24/1997, PP No. 18/2021",
+      "complexity": "complex",
+      "estimated_cost": {
+        "min": 2000000,
+        "max": 10000000,
+        "currency": "IDR",
+        "description": "Rp 2.000.000 - Rp 10.000.000 (termasuk biaya notaris + pajak)"
+      },
+      "fields": [
+        {
+          "name": "nama_penjual",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Penjual",
+          "label_en": "Seller Name"
+        },
+        {
+          "name": "nik_penjual",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Penjual",
+          "label_en": "Seller ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_penjual",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Penjual",
+          "label_en": "Seller Address"
+        },
+        {
+          "name": "nama_pembeli",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pembeli",
+          "label_en": "Buyer Name"
+        },
+        {
+          "name": "nik_pembeli",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Pembeli",
+          "label_en": "Buyer ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_pembeli",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pembeli",
+          "label_en": "Buyer Address"
+        },
+        {
+          "name": "lokasi_tanah",
+          "type": "string",
+          "required": true,
+          "label_id": "Lokasi Tanah",
+          "label_en": "Land Location"
+        },
+        {
+          "name": "luas_tanah",
+          "type": "string",
+          "required": true,
+          "label_id": "Luas Tanah",
+          "label_en": "Land Area"
+        },
+        {
+          "name": "nomor_sertifikat",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Sertifikat",
+          "label_en": "Certificate Number"
+        },
+        {
+          "name": "jenis_hak",
+          "type": "enum",
+          "required": true,
+          "label_id": "Jenis Hak Atas Tanah",
+          "label_en": "Type of Land Right",
+          "options": ["HM", "HGB", "HGU", "HP"],
+          "descriptions": {
+            "HM": "Hak Milik",
+            "HGB": "Hak Guna Bangunan",
+            "HGU": "Hak Guna Usaha",
+            "HP": "Hak Pakai"
+          }
+        },
+        {
+          "name": "harga_tanah",
+          "type": "number",
+          "required": true,
+          "label_id": "Harga Tanah",
+          "label_en": "Land Price",
+          "currency": "IDR"
+        },
+        {
+          "name": "cara_pembayaran",
+          "type": "string",
+          "required": true,
+          "label_id": "Cara Pembayaran",
+          "label_en": "Payment Method"
+        },
+        {
+          "name": "jadwal_pembayaran",
+          "type": "text",
+          "required": true,
+          "label_id": "Jadwal Pembayaran",
+          "label_en": "Payment Schedule"
+        },
+        {
+          "name": "dp_amount",
+          "type": "number",
+          "required": false,
+          "label_id": "Uang Muka (DP)",
+          "label_en": "Down Payment",
+          "currency": "IDR"
+        },
+        {
+          "name": "tanggal_ajb",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Penandatanganan AJB",
+          "label_en": "Date of Deed Signing"
+        },
+        {
+          "name": "ppat_notaris",
+          "type": "string",
+          "required": true,
+          "label_id": "PPAT/Notaris",
+          "label_en": "Land Deed Official/Notary"
+        },
+        {
+          "name": "pph_penjual",
+          "type": "number",
+          "required": true,
+          "label_id": "PPh Penjual",
+          "label_en": "Seller Income Tax",
+          "default": 2.5,
+          "unit": "percent",
+          "description": "PPh Final 2.5% dari harga jual"
+        },
+        {
+          "name": "bphtb_pembeli",
+          "type": "number",
+          "required": true,
+          "label_id": "BPHTB Pembeli",
+          "label_en": "Buyer Land/Building Acquisition Tax",
+          "default": 5,
+          "unit": "percent",
+          "description": "BPHTB 5% dari (NJOP - NJOPTKP)"
+        },
+        {
+          "name": "kondisi_tanah",
+          "type": "text",
+          "required": true,
+          "label_id": "Kondisi Tanah",
+          "label_en": "Land Condition"
+        },
+        {
+          "name": "jaminan_bebas_sengketa",
+          "type": "boolean",
+          "required": true,
+          "label_id": "Jaminan Bebas Sengketa",
+          "label_en": "Dispute-Free Guarantee",
+          "default": true
+        },
+        {
+          "name": "denda_wanprestasi",
+          "type": "text",
+          "required": false,
+          "label_id": "Denda Wanprestasi",
+          "label_en": "Default Penalty"
+        }
+      ]
+    },
+    {
+      "id": "surat-kuasa-jual-tanah",
+      "category": "property",
+      "name_id": "Surat Kuasa Jual Tanah",
+      "name_en": "Power of Attorney for Land Sale",
+      "description_id": "Template surat kuasa untuk menjual tanah/properti, memberikan wewenang kepada penerima kuasa untuk melakukan proses jual beli atas nama pemberi kuasa.",
+      "description_en": "Power of attorney template for land/property sale, authorizing the recipient to carry out the sale process on behalf of the grantor.",
+      "legal_basis": "KUHPerdata Pasal 1792, PP No. 24/1997",
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 500000,
+        "max": 2000000,
+        "currency": "IDR",
+        "description": "Rp 500.000 - Rp 2.000.000"
+      },
+      "fields": [
+        {
+          "name": "nama_pemberi",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pemberi Kuasa",
+          "label_en": "Grantor Name"
+        },
+        {
+          "name": "nik_pemberi",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Pemberi Kuasa",
+          "label_en": "Grantor ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_pemberi",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Pemberi Kuasa",
+          "label_en": "Grantor Address"
+        },
+        {
+          "name": "nama_penerima",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Penerima Kuasa",
+          "label_en": "Attorney-in-Fact Name"
+        },
+        {
+          "name": "nik_penerima",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Penerima Kuasa",
+          "label_en": "Attorney-in-Fact ID Number",
+          "pattern": "^[0-9]{16}$"
+        },
+        {
+          "name": "alamat_penerima",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Penerima Kuasa",
+          "label_en": "Attorney-in-Fact Address"
+        },
+        {
+          "name": "lokasi_tanah",
+          "type": "string",
+          "required": true,
+          "label_id": "Lokasi Tanah",
+          "label_en": "Land Location"
+        },
+        {
+          "name": "luas_tanah",
+          "type": "string",
+          "required": true,
+          "label_id": "Luas Tanah",
+          "label_en": "Land Area"
+        },
+        {
+          "name": "nomor_sertifikat",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Sertifikat",
+          "label_en": "Certificate Number"
+        },
+        {
+          "name": "jenis_hak",
+          "type": "enum",
+          "required": true,
+          "label_id": "Jenis Hak Atas Tanah",
+          "label_en": "Type of Land Right",
+          "options": ["HM", "HGB", "HGU", "HP"]
+        },
+        {
+          "name": "batas_harga_minimum",
+          "type": "number",
+          "required": false,
+          "label_id": "Batas Harga Minimum",
+          "label_en": "Minimum Price Limit",
+          "currency": "IDR"
+        },
+        {
+          "name": "jangka_waktu",
+          "type": "string",
+          "required": true,
+          "label_id": "Jangka Waktu Berlaku",
+          "label_en": "Validity Period"
+        }
+      ]
+    }
+  ]
+}

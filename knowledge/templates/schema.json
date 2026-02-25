@@ -1,0 +1,202 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI-Lawyer Template Engine Schema",
+  "description": "Unified schema for Indonesian legal document template generation",
+  "version": "1.0.0",
+  
+  "definitions": {
+    "field_types": {
+      "enum": ["text", "textarea", "date", "number", "currency", "select", "multiselect", "boolean", "email", "phone", "file"]
+    },
+    
+    "field_schema": {
+      "type": "object",
+      "required": ["name", "label", "type", "required"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Machine-readable field identifier (snake_case)"
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable label in Indonesian"
+        },
+        "label_en": {
+          "type": "string",
+          "description": "Human-readable label in English"
+        },
+        "type": {
+          "$ref": "#/definitions/field_types"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "default": {
+          "description": "Default value for the field"
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Placeholder text"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Help text for the user"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Regex validation pattern"
+        },
+        "min": {
+          "type": "number",
+          "description": "Minimum value (for number/currency)"
+        },
+        "max": {
+          "type": "number",
+          "description": "Maximum value (for number/currency)"
+        },
+        "minLength": {
+          "type": "integer",
+          "description": "Minimum text length"
+        },
+        "maxLength": {
+          "type": "integer",
+          "description": "Maximum text length"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {"type": "string"},
+              {
+                "type": "object",
+                "properties": {
+                  "value": {"type": "string"},
+                  "label": {"type": "string"},
+                  "label_en": {"type": "string"}
+                }
+              }
+            ]
+          },
+          "description": "Options for select/multiselect fields"
+        },
+        "conditional": {
+          "type": "object",
+          "properties": {
+            "field": {"type": "string"},
+            "operator": {"enum": ["equals", "not_equals", "greater_than", "less_than", "contains", "is_true", "is_false"]},
+            "value": {}
+          },
+          "description": "Show this field only when condition is met"
+        },
+        "group": {
+          "type": "string",
+          "description": "Group fields visually (e.g., 'identitas_pihak1', 'identitas_pihak2')"
+        }
+      }
+    },
+    
+    "template_schema": {
+      "type": "object",
+      "required": ["id", "category", "name_id", "name_en", "legal_basis", "fields"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique template identifier (kebab-case)"
+        },
+        "category": {
+          "enum": ["family", "business", "employment", "property", "general", "criminal", "consumer"],
+          "description": "Template category"
+        },
+        "name_id": {
+          "type": "string",
+          "description": "Template name in Indonesian"
+        },
+        "name_en": {
+          "type": "string",
+          "description": "Template name in English"
+        },
+        "description_id": {
+          "type": "string",
+          "description": "Template description in Indonesian"
+        },
+        "description_en": {
+          "type": "string",
+          "description": "Template description in English"
+        },
+        "legal_basis": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Relevant laws and regulations"
+        },
+        "court": {
+          "type": ["string", "null"],
+          "description": "Relevant court (Pengadilan Agama, Pengadilan Negeri, etc.)"
+        },
+        "complexity": {
+          "enum": ["simple", "moderate", "complex"],
+          "description": "Document complexity level"
+        },
+        "estimated_cost": {
+          "type": "string",
+          "description": "Estimated cost range in Rupiah"
+        },
+        "estimated_time": {
+          "type": "string",
+          "description": "Estimated time to complete"
+        },
+        "requires_notary": {
+          "type": "boolean",
+          "description": "Whether notarization is required"
+        },
+        "requires_court": {
+          "type": "boolean",
+          "description": "Whether court filing is required"
+        },
+        "template_file": {
+          "type": "string",
+          "description": "Path to the .md template file with {{placeholders}}"
+        },
+        "fields": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/field_schema"},
+          "description": "Form fields for document generation"
+        },
+        "output_format": {
+          "type": "array",
+          "items": {"enum": ["pdf", "docx", "html", "md"]},
+          "default": ["pdf", "docx"],
+          "description": "Supported output formats"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Important legal warnings to display"
+        },
+        "related_templates": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "IDs of related templates"
+        },
+        "related_procedures": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Paths to related procedure guides"
+        },
+        "related_faq": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Paths to related FAQ files"
+        }
+      }
+    }
+  },
+  
+  "type": "object",
+  "properties": {
+    "templates": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/template_schema"}
+    }
+  }
+}

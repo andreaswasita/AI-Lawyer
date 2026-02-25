@@ -1,0 +1,899 @@
+{
+  "templates": [
+    {
+      "id": "kontrak-kerja-pkwt",
+      "category": "employment",
+      "name_id": "Perjanjian Kerja Waktu Tertentu (PKWT)",
+      "name_en": "Fixed-Term Employment Contract (PKWT)",
+      "description_id": "Template kontrak kerja waktu tertentu sesuai UU Ketenagakerjaan dan UU Cipta Kerja. Digunakan untuk hubungan kerja dengan jangka waktu tertentu atau pekerjaan tertentu.",
+      "description_en": "Fixed-term employment contract template compliant with Indonesian Labor Law and Job Creation Law. Used for employment relationships with a defined duration or specific type of work.",
+      "legal_basis": [
+        "UU No. 13 Tahun 2003 tentang Ketenagakerjaan Pasal 56-59",
+        "PP No. 35 Tahun 2021 tentang PKWT, Alih Daya, Waktu Kerja, PHK",
+        "UU No. 6 Tahun 2023 tentang Cipta Kerja (Perppu 2/2022)"
+      ],
+      "complexity": "moderate",
+      "estimated_cost": "Rp 500.000 - Rp 1.500.000",
+      "notes": [
+        "Masa percobaan (probation) TIDAK DIPERBOLEHKAN dalam PKWT (Pasal 58 UU 13/2003)",
+        "Total durasi PKWT maksimal 5 tahun termasuk perpanjangan (PP 35/2021 Pasal 8)",
+        "Wajib memberikan kompensasi PKWT saat berakhir sesuai PP 35/2021 Pasal 15-16",
+        "PKWT wajib dicatatkan ke instansi ketenagakerjaan"
+      ],
+      "fields": [
+        {
+          "name": "nomor_kontrak",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Kontrak",
+          "label_en": "Contract Number",
+          "validation": "Format nomor surat perusahaan"
+        },
+        {
+          "name": "nama_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Perusahaan",
+          "label_en": "Company Name",
+          "validation": "Sesuai akta pendirian perusahaan"
+        },
+        {
+          "name": "alamat_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Perusahaan",
+          "label_en": "Company Address",
+          "validation": "Alamat lengkap sesuai SIUP/NIB"
+        },
+        {
+          "name": "npwp_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "NPWP Perusahaan",
+          "label_en": "Company Tax ID",
+          "validation": "Format: XX.XXX.XXX.X-XXX.XXX"
+        },
+        {
+          "name": "nama_pimpinan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pimpinan",
+          "label_en": "Company Representative Name",
+          "validation": "Nama lengkap sesuai KTP"
+        },
+        {
+          "name": "jabatan_pimpinan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan Pimpinan",
+          "label_en": "Representative Title",
+          "validation": "Jabatan yang berwenang menandatangani kontrak"
+        },
+        {
+          "name": "nama_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Karyawan",
+          "label_en": "Employee Name",
+          "validation": "Nama lengkap sesuai KTP"
+        },
+        {
+          "name": "nik_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Karyawan",
+          "label_en": "Employee ID Number",
+          "validation": "16 digit NIK sesuai KTP"
+        },
+        {
+          "name": "tempat_lahir",
+          "type": "string",
+          "required": true,
+          "label_id": "Tempat Lahir",
+          "label_en": "Place of Birth",
+          "validation": "Sesuai KTP"
+        },
+        {
+          "name": "tanggal_lahir",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Lahir",
+          "label_en": "Date of Birth",
+          "validation": "Format: DD-MM-YYYY, minimal usia 18 tahun"
+        },
+        {
+          "name": "alamat_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Karyawan",
+          "label_en": "Employee Address",
+          "validation": "Alamat lengkap sesuai KTP"
+        },
+        {
+          "name": "jabatan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan",
+          "label_en": "Job Title",
+          "validation": "Sesuai struktur organisasi perusahaan"
+        },
+        {
+          "name": "deskripsi_pekerjaan",
+          "type": "text",
+          "required": true,
+          "label_id": "Deskripsi Pekerjaan",
+          "label_en": "Job Description",
+          "validation": "Uraian tugas dan tanggung jawab"
+        },
+        {
+          "name": "lokasi_kerja",
+          "type": "string",
+          "required": true,
+          "label_id": "Lokasi Kerja",
+          "label_en": "Work Location",
+          "validation": "Alamat lengkap tempat kerja"
+        },
+        {
+          "name": "tanggal_mulai",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Mulai Kerja",
+          "label_en": "Start Date",
+          "validation": "Format: DD-MM-YYYY"
+        },
+        {
+          "name": "tanggal_berakhir",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Berakhir Kontrak",
+          "label_en": "End Date",
+          "validation": "Format: DD-MM-YYYY. Total durasi PKWT maksimal 5 tahun termasuk perpanjangan (PP 35/2021)"
+        },
+        {
+          "name": "upah_pokok",
+          "type": "number",
+          "required": true,
+          "label_id": "Upah Pokok",
+          "label_en": "Basic Salary",
+          "validation": "Minimal sesuai UMK/UMP yang berlaku, dalam Rupiah"
+        },
+        {
+          "name": "tunjangan",
+          "type": "array",
+          "required": false,
+          "label_id": "Tunjangan",
+          "label_en": "Allowances",
+          "items": [
+            {
+              "name": "tunjangan_transport",
+              "type": "number",
+              "label_id": "Tunjangan Transportasi",
+              "label_en": "Transport Allowance"
+            },
+            {
+              "name": "tunjangan_makan",
+              "type": "number",
+              "label_id": "Tunjangan Makan",
+              "label_en": "Meal Allowance"
+            },
+            {
+              "name": "tunjangan_komunikasi",
+              "type": "number",
+              "label_id": "Tunjangan Komunikasi",
+              "label_en": "Communication Allowance"
+            },
+            {
+              "name": "tunjangan_lainnya",
+              "type": "number",
+              "label_id": "Tunjangan Lainnya",
+              "label_en": "Other Allowances"
+            }
+          ]
+        },
+        {
+          "name": "jam_kerja",
+          "type": "select",
+          "required": true,
+          "label_id": "Jam Kerja",
+          "label_en": "Working Hours",
+          "options": [
+            {
+              "value": "7jam_6hari",
+              "label": "7 jam/hari × 6 hari/minggu (40 jam/minggu)"
+            },
+            {
+              "value": "8jam_5hari",
+              "label": "8 jam/hari × 5 hari/minggu (40 jam/minggu)"
+            }
+          ],
+          "validation": "Sesuai Pasal 77 UU 13/2003"
+        },
+        {
+          "name": "hari_kerja",
+          "type": "string",
+          "required": true,
+          "label_id": "Hari Kerja",
+          "label_en": "Working Days",
+          "validation": "Contoh: Senin - Sabtu atau Senin - Jumat"
+        },
+        {
+          "name": "cuti_tahunan",
+          "type": "number",
+          "required": true,
+          "label_id": "Cuti Tahunan",
+          "label_en": "Annual Leave",
+          "validation": "Minimal 12 hari kerja setelah 12 bulan bekerja terus-menerus (Pasal 79 UU 13/2003)",
+          "default": 12
+        },
+        {
+          "name": "jamsostek",
+          "type": "boolean",
+          "required": true,
+          "label_id": "BPJS Ketenagakerjaan",
+          "label_en": "Employment Social Security (BPJS Ketenagakerjaan)",
+          "validation": "Wajib didaftarkan (UU No. 24/2011)",
+          "default": true
+        },
+        {
+          "name": "bpjs_kesehatan",
+          "type": "boolean",
+          "required": true,
+          "label_id": "BPJS Kesehatan",
+          "label_en": "Health Insurance (BPJS Kesehatan)",
+          "validation": "Wajib didaftarkan (UU No. 24/2011)",
+          "default": true
+        },
+        {
+          "name": "masa_percobaan",
+          "type": "null",
+          "required": false,
+          "label_id": "Masa Percobaan",
+          "label_en": "Probation Period",
+          "validation": "⚠️ TIDAK DIPERBOLEHKAN untuk PKWT. Pasal 58 UU 13/2003: Perjanjian kerja waktu tertentu tidak dapat mensyaratkan adanya masa percobaan kerja. Jika dicantumkan, klausul masa percobaan BATAL DEMI HUKUM.",
+          "forbidden": true,
+          "forbidden_reason": "Pasal 58 UU No. 13/2003 melarang masa percobaan dalam PKWT"
+        }
+      ]
+    },
+    {
+      "id": "kontrak-kerja-pkwtt",
+      "category": "employment",
+      "name_id": "Perjanjian Kerja Waktu Tidak Tertentu (PKWTT)",
+      "name_en": "Permanent Employment Contract (PKWTT)",
+      "description_id": "Template kontrak kerja waktu tidak tertentu (permanen) sesuai UU Ketenagakerjaan. Digunakan untuk hubungan kerja tetap tanpa batas waktu.",
+      "description_en": "Permanent/indefinite employment contract template compliant with Indonesian Labor Law. Used for permanent employment relationships without a fixed end date.",
+      "legal_basis": [
+        "UU No. 13 Tahun 2003 tentang Ketenagakerjaan Pasal 60-63",
+        "UU No. 6 Tahun 2023 tentang Cipta Kerja (Perppu 2/2022)",
+        "PP No. 35 Tahun 2021 tentang PKWT, Alih Daya, Waktu Kerja, PHK"
+      ],
+      "complexity": "moderate",
+      "estimated_cost": "Rp 500.000 - Rp 1.500.000",
+      "notes": [
+        "Masa percobaan maksimal 3 bulan (Pasal 60 UU 13/2003)",
+        "Selama masa percobaan, upah tidak boleh di bawah upah minimum",
+        "PKWTT dapat dibuat secara lisan namun wajib dibuatkan surat pengangkatan",
+        "Ketentuan PHK tunduk pada UU Cipta Kerja dan PP 35/2021"
+      ],
+      "fields": [
+        {
+          "name": "nomor_kontrak",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Kontrak",
+          "label_en": "Contract Number",
+          "validation": "Format nomor surat perusahaan"
+        },
+        {
+          "name": "nama_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Perusahaan",
+          "label_en": "Company Name",
+          "validation": "Sesuai akta pendirian perusahaan"
+        },
+        {
+          "name": "alamat_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Perusahaan",
+          "label_en": "Company Address",
+          "validation": "Alamat lengkap sesuai SIUP/NIB"
+        },
+        {
+          "name": "npwp_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "NPWP Perusahaan",
+          "label_en": "Company Tax ID",
+          "validation": "Format: XX.XXX.XXX.X-XXX.XXX"
+        },
+        {
+          "name": "nama_pimpinan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Pimpinan",
+          "label_en": "Company Representative Name",
+          "validation": "Nama lengkap sesuai KTP"
+        },
+        {
+          "name": "jabatan_pimpinan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan Pimpinan",
+          "label_en": "Representative Title",
+          "validation": "Jabatan yang berwenang menandatangani kontrak"
+        },
+        {
+          "name": "nama_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Karyawan",
+          "label_en": "Employee Name",
+          "validation": "Nama lengkap sesuai KTP"
+        },
+        {
+          "name": "nik_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK Karyawan",
+          "label_en": "Employee ID Number",
+          "validation": "16 digit NIK sesuai KTP"
+        },
+        {
+          "name": "tempat_lahir",
+          "type": "string",
+          "required": true,
+          "label_id": "Tempat Lahir",
+          "label_en": "Place of Birth",
+          "validation": "Sesuai KTP"
+        },
+        {
+          "name": "tanggal_lahir",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Lahir",
+          "label_en": "Date of Birth",
+          "validation": "Format: DD-MM-YYYY, minimal usia 18 tahun"
+        },
+        {
+          "name": "alamat_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Alamat Karyawan",
+          "label_en": "Employee Address",
+          "validation": "Alamat lengkap sesuai KTP"
+        },
+        {
+          "name": "jabatan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan",
+          "label_en": "Job Title",
+          "validation": "Sesuai struktur organisasi perusahaan"
+        },
+        {
+          "name": "deskripsi_pekerjaan",
+          "type": "text",
+          "required": true,
+          "label_id": "Deskripsi Pekerjaan",
+          "label_en": "Job Description",
+          "validation": "Uraian tugas dan tanggung jawab"
+        },
+        {
+          "name": "lokasi_kerja",
+          "type": "string",
+          "required": true,
+          "label_id": "Lokasi Kerja",
+          "label_en": "Work Location",
+          "validation": "Alamat lengkap tempat kerja"
+        },
+        {
+          "name": "tanggal_mulai",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Mulai Kerja",
+          "label_en": "Start Date",
+          "validation": "Format: DD-MM-YYYY"
+        },
+        {
+          "name": "masa_percobaan",
+          "type": "number",
+          "required": false,
+          "label_id": "Masa Percobaan",
+          "label_en": "Probation Period",
+          "validation": "Maksimal 3 bulan (Pasal 60 UU 13/2003). Upah selama masa percobaan tidak boleh lebih rendah dari upah minimum yang berlaku.",
+          "max_value": 3,
+          "unit": "bulan",
+          "default": 3
+        },
+        {
+          "name": "upah_pokok",
+          "type": "number",
+          "required": true,
+          "label_id": "Upah Pokok",
+          "label_en": "Basic Salary",
+          "validation": "Minimal sesuai UMK/UMP yang berlaku, dalam Rupiah"
+        },
+        {
+          "name": "tunjangan",
+          "type": "array",
+          "required": false,
+          "label_id": "Tunjangan",
+          "label_en": "Allowances",
+          "items": [
+            {
+              "name": "tunjangan_transport",
+              "type": "number",
+              "label_id": "Tunjangan Transportasi",
+              "label_en": "Transport Allowance"
+            },
+            {
+              "name": "tunjangan_makan",
+              "type": "number",
+              "label_id": "Tunjangan Makan",
+              "label_en": "Meal Allowance"
+            },
+            {
+              "name": "tunjangan_komunikasi",
+              "type": "number",
+              "label_id": "Tunjangan Komunikasi",
+              "label_en": "Communication Allowance"
+            },
+            {
+              "name": "tunjangan_lainnya",
+              "type": "number",
+              "label_id": "Tunjangan Lainnya",
+              "label_en": "Other Allowances"
+            }
+          ]
+        },
+        {
+          "name": "jam_kerja",
+          "type": "select",
+          "required": true,
+          "label_id": "Jam Kerja",
+          "label_en": "Working Hours",
+          "options": [
+            {
+              "value": "7jam_6hari",
+              "label": "7 jam/hari × 6 hari/minggu (40 jam/minggu)"
+            },
+            {
+              "value": "8jam_5hari",
+              "label": "8 jam/hari × 5 hari/minggu (40 jam/minggu)"
+            }
+          ],
+          "validation": "Sesuai Pasal 77 UU 13/2003"
+        },
+        {
+          "name": "hari_kerja",
+          "type": "string",
+          "required": true,
+          "label_id": "Hari Kerja",
+          "label_en": "Working Days",
+          "validation": "Contoh: Senin - Sabtu atau Senin - Jumat"
+        },
+        {
+          "name": "cuti_tahunan",
+          "type": "number",
+          "required": true,
+          "label_id": "Cuti Tahunan",
+          "label_en": "Annual Leave",
+          "validation": "Minimal 12 hari kerja setelah 12 bulan bekerja terus-menerus (Pasal 79 UU 13/2003)",
+          "default": 12
+        },
+        {
+          "name": "jamsostek",
+          "type": "boolean",
+          "required": true,
+          "label_id": "BPJS Ketenagakerjaan",
+          "label_en": "Employment Social Security (BPJS Ketenagakerjaan)",
+          "validation": "Wajib didaftarkan (UU No. 24/2011)",
+          "default": true
+        },
+        {
+          "name": "bpjs_kesehatan",
+          "type": "boolean",
+          "required": true,
+          "label_id": "BPJS Kesehatan",
+          "label_en": "Health Insurance (BPJS Kesehatan)",
+          "validation": "Wajib didaftarkan (UU No. 24/2011)",
+          "default": true
+        },
+        {
+          "name": "ketentuan_phk",
+          "type": "text",
+          "required": true,
+          "label_id": "Ketentuan Pemutusan Hubungan Kerja",
+          "label_en": "Termination Provisions",
+          "validation": "Harus sesuai dengan UU Cipta Kerja dan PP 35/2021. Mencakup alasan PHK, prosedur, dan kompensasi."
+        }
+      ]
+    },
+    {
+      "id": "surat-pengunduran-diri",
+      "category": "employment",
+      "name_id": "Surat Pengunduran Diri",
+      "name_en": "Resignation Letter",
+      "description_id": "Template surat pengunduran diri karyawan sesuai ketentuan UU Ketenagakerjaan. Harus diajukan minimal 30 hari sebelum tanggal efektif pengunduran diri.",
+      "description_en": "Employee resignation letter template compliant with Indonesian Labor Law. Must be submitted at least 30 days before the effective resignation date.",
+      "legal_basis": [
+        "UU No. 13 Tahun 2003 tentang Ketenagakerjaan Pasal 162",
+        "PP No. 35 Tahun 2021 tentang PKWT, Alih Daya, Waktu Kerja, PHK"
+      ],
+      "complexity": "simple",
+      "estimated_cost": "Rp 200.000 - Rp 500.000",
+      "notes": [
+        "Wajib diajukan minimal 30 hari sebelum tanggal pengunduran diri",
+        "Pekerja berhak atas uang pisah sesuai Perjanjian Kerja/PP/PKB (Pasal 162 ayat 2)",
+        "Pekerja berhak atas uang penggantian hak sesuai Pasal 156 ayat 4",
+        "Tidak ada kewajiban bagi perusahaan membayar uang pesangon dan UPMK"
+      ],
+      "fields": [
+        {
+          "name": "nama_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Karyawan",
+          "label_en": "Employee Name",
+          "validation": "Nama lengkap sesuai KTP"
+        },
+        {
+          "name": "nik_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK / Nomor Induk Karyawan",
+          "label_en": "Employee ID Number",
+          "validation": "Nomor induk karyawan di perusahaan"
+        },
+        {
+          "name": "jabatan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan",
+          "label_en": "Job Title",
+          "validation": "Jabatan terakhir karyawan"
+        },
+        {
+          "name": "departemen",
+          "type": "string",
+          "required": true,
+          "label_id": "Departemen",
+          "label_en": "Department",
+          "validation": "Departemen/divisi tempat karyawan bekerja"
+        },
+        {
+          "name": "nama_perusahaan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Perusahaan",
+          "label_en": "Company Name",
+          "validation": "Nama lengkap perusahaan"
+        },
+        {
+          "name": "tanggal_surat",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Surat",
+          "label_en": "Letter Date",
+          "validation": "Format: DD-MM-YYYY"
+        },
+        {
+          "name": "tanggal_efektif",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Efektif Pengunduran Diri",
+          "label_en": "Effective Resignation Date",
+          "validation": "Minimal 30 hari kalender setelah tanggal surat (Pasal 162 UU 13/2003)"
+        },
+        {
+          "name": "alasan",
+          "type": "text",
+          "required": false,
+          "label_id": "Alasan Pengunduran Diri",
+          "label_en": "Reason for Resignation",
+          "validation": "Opsional, dapat dikosongkan"
+        },
+        {
+          "name": "bersedia_serah_terima",
+          "type": "boolean",
+          "required": true,
+          "label_id": "Bersedia Melakukan Serah Terima",
+          "label_en": "Willing to Perform Handover",
+          "validation": "Pernyataan kesediaan melakukan serah terima tugas dan tanggung jawab",
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "surat-peringatan",
+      "category": "employment",
+      "name_id": "Surat Peringatan (SP1/SP2/SP3)",
+      "name_en": "Warning Letter (SP1/SP2/SP3)",
+      "description_id": "Template surat peringatan karyawan yang dapat digunakan untuk SP-1, SP-2, atau SP-3 sesuai UU Ketenagakerjaan. Berlaku maksimal 6 bulan sejak diterbitkan.",
+      "description_en": "Employee warning letter template for first, second, or third warning, compliant with Indonesian Labor Law. Valid for a maximum of 6 months from issuance.",
+      "legal_basis": [
+        "UU No. 13 Tahun 2003 tentang Ketenagakerjaan Pasal 161",
+        "Peraturan Perusahaan / Perjanjian Kerja Bersama yang berlaku"
+      ],
+      "complexity": "simple",
+      "estimated_cost": "Rp 200.000 - Rp 500.000",
+      "notes": [
+        "Surat peringatan berlaku maksimal 6 bulan (Pasal 161 ayat 2 UU 13/2003)",
+        "SP dapat diberikan secara berurutan (SP1 → SP2 → SP3) atau langsung sesuai tingkat pelanggaran",
+        "Setelah SP-3, perusahaan dapat melakukan PHK",
+        "Harus mengacu pada Peraturan Perusahaan atau PKB yang berlaku"
+      ],
+      "fields": [
+        {
+          "name": "nomor_surat",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Surat",
+          "label_en": "Letter Number",
+          "validation": "Format nomor surat perusahaan"
+        },
+        {
+          "name": "nama_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Karyawan",
+          "label_en": "Employee Name",
+          "validation": "Nama lengkap sesuai data karyawan"
+        },
+        {
+          "name": "nik_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK / Nomor Induk Karyawan",
+          "label_en": "Employee ID Number",
+          "validation": "Nomor induk karyawan di perusahaan"
+        },
+        {
+          "name": "jabatan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan",
+          "label_en": "Job Title",
+          "validation": "Jabatan karyawan saat ini"
+        },
+        {
+          "name": "departemen",
+          "type": "string",
+          "required": true,
+          "label_id": "Departemen",
+          "label_en": "Department",
+          "validation": "Departemen/divisi tempat karyawan bekerja"
+        },
+        {
+          "name": "jenis_sp",
+          "type": "select",
+          "required": true,
+          "label_id": "Jenis Surat Peringatan",
+          "label_en": "Warning Level",
+          "options": [
+            { "value": "SP-1", "label": "Surat Peringatan Kesatu (SP-1)" },
+            { "value": "SP-2", "label": "Surat Peringatan Kedua (SP-2)" },
+            { "value": "SP-3", "label": "Surat Peringatan Ketiga (SP-3)" }
+          ],
+          "validation": "Pilih tingkat surat peringatan"
+        },
+        {
+          "name": "pelanggaran",
+          "type": "text",
+          "required": true,
+          "label_id": "Uraian Pelanggaran",
+          "label_en": "Description of Violation",
+          "validation": "Uraian lengkap pelanggaran yang dilakukan"
+        },
+        {
+          "name": "tanggal_pelanggaran",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Pelanggaran",
+          "label_en": "Date of Violation",
+          "validation": "Format: DD-MM-YYYY"
+        },
+        {
+          "name": "ketentuan_dilanggar",
+          "type": "string",
+          "required": true,
+          "label_id": "Ketentuan yang Dilanggar",
+          "label_en": "Regulation Violated",
+          "validation": "Pasal/ayat Peraturan Perusahaan atau PKB yang dilanggar"
+        },
+        {
+          "name": "sanksi",
+          "type": "text",
+          "required": true,
+          "label_id": "Sanksi / Konsekuensi",
+          "label_en": "Sanction / Consequence",
+          "validation": "Tindakan/sanksi yang diberikan dan konsekuensi jika terulang"
+        },
+        {
+          "name": "masa_berlaku_sp",
+          "type": "number",
+          "required": true,
+          "label_id": "Masa Berlaku SP (bulan)",
+          "label_en": "Warning Validity Period (months)",
+          "validation": "Maksimal 6 bulan sejak tanggal diterbitkan (Pasal 161 ayat 2 UU 13/2003)",
+          "max_value": 6,
+          "default": 6
+        },
+        {
+          "name": "tanggal_surat",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Surat",
+          "label_en": "Letter Date",
+          "validation": "Format: DD-MM-YYYY"
+        }
+      ]
+    },
+    {
+      "id": "surat-phk",
+      "category": "employment",
+      "name_id": "Surat Pemutusan Hubungan Kerja (PHK)",
+      "name_en": "Employment Termination Letter",
+      "description_id": "Template surat pemutusan hubungan kerja sesuai UU Ketenagakerjaan dan UU Cipta Kerja. Mencakup perhitungan pesangon, UPMK, dan uang penggantian hak.",
+      "description_en": "Employment termination letter template compliant with Indonesian Labor Law and Job Creation Law. Includes severance pay, long-service pay, and compensation calculations.",
+      "legal_basis": [
+        "UU No. 13 Tahun 2003 tentang Ketenagakerjaan Pasal 150-172",
+        "PP No. 35 Tahun 2021 tentang PKWT, Alih Daya, Waktu Kerja, PHK",
+        "UU No. 6 Tahun 2023 tentang Cipta Kerja (Perppu 2/2022)"
+      ],
+      "complexity": "complex",
+      "estimated_cost": "Rp 2.000.000 - Rp 5.000.000",
+      "notes": [
+        "PHK harus melalui proses bipartit terlebih dahulu (Pasal 151 UU 13/2003)",
+        "Jika bipartit gagal, dilanjutkan ke mediasi/konsiliasi/arbitrase",
+        "Jika masih gagal, dapat diajukan ke Pengadilan Hubungan Industrial (PHI)",
+        "Besaran pesangon dan UPMK mengacu pada Pasal 156 UU 13/2003 jo. UU Cipta Kerja",
+        "Alasan PHK menentukan multiplier pesangon yang berlaku"
+      ],
+      "severance_table": {
+        "description": "Tabel Perhitungan Uang Pesangon (Pasal 156 ayat 2 UU 13/2003)",
+        "formula": "Pesangon × multiplier sesuai alasan PHK",
+        "rates": [
+          { "masa_kerja": "< 1 tahun", "pesangon": "1 bulan upah" },
+          { "masa_kerja": "1 - < 2 tahun", "pesangon": "2 bulan upah" },
+          { "masa_kerja": "2 - < 3 tahun", "pesangon": "3 bulan upah" },
+          { "masa_kerja": "3 - < 4 tahun", "pesangon": "4 bulan upah" },
+          { "masa_kerja": "4 - < 5 tahun", "pesangon": "5 bulan upah" },
+          { "masa_kerja": "5 - < 6 tahun", "pesangon": "6 bulan upah" },
+          { "masa_kerja": "6 - < 7 tahun", "pesangon": "7 bulan upah" },
+          { "masa_kerja": "7 - < 8 tahun", "pesangon": "8 bulan upah" },
+          { "masa_kerja": "≥ 8 tahun", "pesangon": "9 bulan upah" }
+        ],
+        "upmk_rates": [
+          { "masa_kerja": "3 - < 6 tahun", "upmk": "2 bulan upah" },
+          { "masa_kerja": "6 - < 9 tahun", "upmk": "3 bulan upah" },
+          { "masa_kerja": "9 - < 12 tahun", "upmk": "4 bulan upah" },
+          { "masa_kerja": "12 - < 15 tahun", "upmk": "5 bulan upah" },
+          { "masa_kerja": "15 - < 18 tahun", "upmk": "6 bulan upah" },
+          { "masa_kerja": "18 - < 21 tahun", "upmk": "7 bulan upah" },
+          { "masa_kerja": "21 - < 24 tahun", "upmk": "8 bulan upah" },
+          { "masa_kerja": "≥ 24 tahun", "upmk": "10 bulan upah" }
+        ]
+      },
+      "fields": [
+        {
+          "name": "nomor_surat",
+          "type": "string",
+          "required": true,
+          "label_id": "Nomor Surat",
+          "label_en": "Letter Number",
+          "validation": "Format nomor surat perusahaan"
+        },
+        {
+          "name": "nama_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "Nama Karyawan",
+          "label_en": "Employee Name",
+          "validation": "Nama lengkap sesuai data karyawan"
+        },
+        {
+          "name": "nik_karyawan",
+          "type": "string",
+          "required": true,
+          "label_id": "NIK / Nomor Induk Karyawan",
+          "label_en": "Employee ID Number",
+          "validation": "Nomor induk karyawan di perusahaan"
+        },
+        {
+          "name": "jabatan",
+          "type": "string",
+          "required": true,
+          "label_id": "Jabatan",
+          "label_en": "Job Title",
+          "validation": "Jabatan terakhir karyawan"
+        },
+        {
+          "name": "masa_kerja",
+          "type": "string",
+          "required": true,
+          "label_id": "Masa Kerja",
+          "label_en": "Length of Service",
+          "validation": "Format: X tahun Y bulan (dihitung dari tanggal mulai kerja)"
+        },
+        {
+          "name": "alasan_phk",
+          "type": "select",
+          "required": true,
+          "label_id": "Alasan PHK",
+          "label_en": "Reason for Termination",
+          "options": [
+            { "value": "efisiensi", "label": "Efisiensi perusahaan", "multiplier": "1x pesangon" },
+            { "value": "pelanggaran_berat", "label": "Pelanggaran berat oleh pekerja", "multiplier": "0.5x pesangon (UU Cipta Kerja)" },
+            { "value": "mangkir", "label": "Mangkir 5 hari berturut-turut tanpa keterangan", "multiplier": "Uang penggantian hak + uang pisah" },
+            { "value": "sakit_berkepanjangan", "label": "Sakit berkepanjangan (> 12 bulan)", "multiplier": "2x pesangon" },
+            { "value": "pensiun", "label": "Memasuki usia pensiun", "multiplier": "1.75x pesangon" },
+            { "value": "meninggal", "label": "Pekerja meninggal dunia", "multiplier": "2x pesangon" },
+            { "value": "perusahaan_tutup", "label": "Perusahaan tutup/pailit", "multiplier": "0.5x pesangon (pailit) atau 1x pesangon (tutup)" },
+            { "value": "force_majeure", "label": "Force majeure / keadaan kahar", "multiplier": "0.75x pesangon" }
+          ],
+          "validation": "Pilih alasan PHK yang sesuai"
+        },
+        {
+          "name": "tanggal_efektif_phk",
+          "type": "date",
+          "required": true,
+          "label_id": "Tanggal Efektif PHK",
+          "label_en": "Effective Termination Date",
+          "validation": "Format: DD-MM-YYYY"
+        },
+        {
+          "name": "pesangon",
+          "type": "number",
+          "required": true,
+          "label_id": "Uang Pesangon",
+          "label_en": "Severance Pay",
+          "validation": "Dihitung berdasarkan masa kerja × upah × multiplier alasan PHK (Pasal 156 ayat 2)",
+          "calculated": true
+        },
+        {
+          "name": "upmk",
+          "type": "number",
+          "required": true,
+          "label_id": "Uang Penghargaan Masa Kerja (UPMK)",
+          "label_en": "Long-Service Pay",
+          "validation": "Dihitung berdasarkan masa kerja (Pasal 156 ayat 3)",
+          "calculated": true
+        },
+        {
+          "name": "uang_penggantian_hak",
+          "type": "number",
+          "required": true,
+          "label_id": "Uang Penggantian Hak",
+          "label_en": "Compensation for Entitlements",
+          "validation": "Meliputi: cuti tahunan belum diambil, biaya pulang, penggantian perumahan/pengobatan 15% (Pasal 156 ayat 4)",
+          "calculated": true,
+          "components": [
+            "Cuti tahunan yang belum diambil dan belum gugur",
+            "Biaya/ongkos pulang pekerja dan keluarga ke tempat asal",
+            "Penggantian perumahan serta pengobatan dan perawatan 15% dari pesangon dan/atau UPMK"
+          ]
+        },
+        {
+          "name": "total_kompensasi",
+          "type": "number",
+          "required": true,
+          "label_id": "Total Kompensasi PHK",
+          "label_en": "Total Termination Compensation",
+          "validation": "Pesangon + UPMK + Uang Penggantian Hak",
+          "calculated": true
+        },
+        {
+          "name": "catatan_bipartit",
+          "type": "text",
+          "required": true,
+          "label_id": "Catatan Hasil Perundingan Bipartit",
+          "label_en": "Bipartite Negotiation Notes",
+          "validation": "Ringkasan hasil perundingan bipartit antara perusahaan dan pekerja. Wajib dilakukan sebelum PHK (Pasal 151 UU 13/2003)."
+        }
+      ]
+    }
+  ]
+}

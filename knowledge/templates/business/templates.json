@@ -1,0 +1,691 @@
+{
+  "templates": [
+    {
+      "id": "akta-pendirian-pt",
+      "category": "business",
+      "name_id": "Akta Pendirian Perseroan Terbatas (PT)",
+      "name_en": "Company Incorporation Deed (PT)",
+      "description_id": "Template akta pendirian perusahaan Perseroan Terbatas sesuai dengan UU PT dan peraturan terkait. Mencakup anggaran dasar, struktur permodalan, susunan pengurus, serta ketentuan RUPS.",
+      "description_en": "Template for establishing a Limited Liability Company (PT) in accordance with the Indonesian Company Law and related regulations. Covers articles of association, capital structure, management composition, and general meeting provisions.",
+      "legal_basis": [
+        "UU No. 40 Tahun 2007 tentang Perseroan Terbatas",
+        "PP No. 8 Tahun 2021 tentang Modal Dasar Perseroan Serta Pendaftaran Pendirian, Perubahan, dan Pembubaran Perseroan yang Memenuhi Kriteria untuk Usaha Mikro dan Kecil",
+        "Permenkumham No. 21 Tahun 2021 tentang Syarat dan Tata Cara Pendaftaran Pendirian, Perubahan, dan Pembubaran Badan Hukum Perseroan Terbatas"
+      ],
+      "complexity": "complex",
+      "estimated_cost": {
+        "min": 5000000,
+        "max": 15000000,
+        "currency": "IDR",
+        "description": "Rp 5.000.000 - Rp 15.000.000 (termasuk biaya notaris, PNBP, dan pengurusan)"
+      },
+      "fields": [
+        {
+          "name": "nama_perusahaan",
+          "label": "Nama Perusahaan",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "min_length": 3,
+            "max_length": 200,
+            "pattern": "^PT\\.?\\s+.+$",
+            "description": "Harus diawali dengan 'PT' diikuti nama perusahaan. Nama tidak boleh sama atau mirip dengan PT yang sudah terdaftar."
+          }
+        },
+        {
+          "name": "jenis_pt",
+          "label": "Jenis Perseroan Terbatas",
+          "type": "enum",
+          "required": true,
+          "options": ["PT Biasa", "PT Perorangan", "PT PMA"],
+          "validation": {
+            "description": "PT Biasa: minimal 2 pendiri WNI. PT Perorangan: 1 pendiri WNI (UMK saja). PT PMA: melibatkan penanam modal asing."
+          }
+        },
+        {
+          "name": "bidang_usaha",
+          "label": "Bidang Usaha",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Bidang usaha harus sesuai dengan KBLI dan tidak termasuk dalam Daftar Negatif Investasi (DNI) untuk PT PMA."
+          }
+        },
+        {
+          "name": "kode_kbli",
+          "label": "Kode KBLI (Klasifikasi Baku Lapangan Usaha Indonesia)",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "pattern": "^[0-9]{5}$",
+            "description": "Kode KBLI 5 digit sesuai klasifikasi BPS terbaru."
+          }
+        },
+        {
+          "name": "modal_dasar",
+          "label": "Modal Dasar",
+          "type": "number",
+          "required": true,
+          "validation": {
+            "minimum": 50000000,
+            "description": "Minimal Rp 50.000.000 sesuai UU PT. Untuk PT Perorangan (UMK), ketentuan modal dasar dapat berbeda sesuai PP 8/2021."
+          }
+        },
+        {
+          "name": "modal_disetor",
+          "label": "Modal Disetor",
+          "type": "number",
+          "required": true,
+          "validation": {
+            "description": "Minimal 25% dari modal dasar dan harus dibuktikan dengan bukti penyetoran yang sah (slip transfer/bukti setor bank).",
+            "min_percentage_of": {
+              "field": "modal_dasar",
+              "percentage": 25
+            }
+          }
+        },
+        {
+          "name": "alamat_perusahaan",
+          "label": "Alamat Lengkap Perusahaan",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap termasuk RT/RW, kelurahan, kecamatan, kota/kabupaten, provinsi, dan kode pos. Harus sesuai dengan surat keterangan domisili."
+          }
+        },
+        {
+          "name": "nama_pendiri",
+          "label": "Nama Pendiri",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "validation": {
+            "min_items": 2,
+            "description": "Minimal 2 orang pendiri untuk PT Biasa dan PT PMA. PT Perorangan cukup 1 orang pendiri WNI."
+          }
+        },
+        {
+          "name": "data_pendiri",
+          "label": "Data Pendiri",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "nama": {
+                "type": "string",
+                "required": true
+              },
+              "nik": {
+                "type": "string",
+                "required": true,
+                "pattern": "^[0-9]{16}$",
+                "description": "NIK 16 digit sesuai KTP"
+              },
+              "alamat": {
+                "type": "string",
+                "required": true
+              },
+              "npwp": {
+                "type": "string",
+                "required": true,
+                "pattern": "^[0-9]{15,16}$",
+                "description": "NPWP 15 atau 16 digit"
+              }
+            }
+          },
+          "validation": {
+            "description": "Setiap pendiri wajib menyertakan NIK (KTP), alamat lengkap, dan NPWP."
+          }
+        },
+        {
+          "name": "nama_direktur",
+          "label": "Nama Direktur Utama",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Direktur harus WNI dan tidak tercatat dalam daftar hitam OJK atau pernah dinyatakan pailit."
+          }
+        },
+        {
+          "name": "nama_komisaris",
+          "label": "Nama Komisaris",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Komisaris bertugas melakukan pengawasan atas kebijakan pengurusan oleh Direksi. Tidak boleh merangkap jabatan sebagai Direktur pada PT yang sama."
+          }
+        },
+        {
+          "name": "jangka_waktu",
+          "label": "Jangka Waktu Pendirian",
+          "type": "enum",
+          "required": true,
+          "options": ["Tidak Terbatas", "Terbatas"],
+          "validation": {
+            "description": "PT dapat didirikan untuk jangka waktu terbatas atau tidak terbatas sebagaimana dicantumkan dalam anggaran dasar."
+          }
+        },
+        {
+          "name": "maksud_tujuan_perusahaan",
+          "label": "Maksud dan Tujuan Perusahaan",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "min_length": 50,
+            "description": "Uraian lengkap mengenai maksud dan tujuan serta kegiatan usaha yang akan dijalankan oleh perseroan, harus sesuai dengan KBLI yang dipilih."
+          }
+        }
+      ]
+    },
+    {
+      "id": "perjanjian-kerjasama",
+      "category": "business",
+      "name_id": "Perjanjian Kerjasama",
+      "name_en": "Partnership/Cooperation Agreement",
+      "description_id": "Template perjanjian kerjasama antara dua pihak atau lebih untuk menjalankan kegiatan usaha bersama, mencakup pembagian hak, kewajiban, keuntungan, dan mekanisme penyelesaian sengketa.",
+      "description_en": "Template for a partnership or cooperation agreement between two or more parties to conduct joint business activities, covering rights, obligations, profit sharing, and dispute resolution mechanisms.",
+      "legal_basis": [
+        "KUHPerdata Pasal 1313 tentang Perjanjian",
+        "KUHPerdata Pasal 1320 tentang Syarat Sahnya Perjanjian",
+        "KUHPerdata Pasal 1338 tentang Asas Kebebasan Berkontrak dan Pacta Sunt Servanda"
+      ],
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 2000000,
+        "max": 7500000,
+        "currency": "IDR",
+        "description": "Rp 2.000.000 - Rp 7.500.000 (tergantung kompleksitas dan notarisasi)"
+      },
+      "fields": [
+        {
+          "name": "nama_pihak1",
+          "label": "Nama Pihak Pertama",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap orang perorangan atau nama badan hukum/usaha pihak pertama."
+          }
+        },
+        {
+          "name": "alamat_pihak1",
+          "label": "Alamat Pihak Pertama",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap pihak pertama sesuai KTP/akta pendirian."
+          }
+        },
+        {
+          "name": "nama_pihak2",
+          "label": "Nama Pihak Kedua",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap orang perorangan atau nama badan hukum/usaha pihak kedua."
+          }
+        },
+        {
+          "name": "alamat_pihak2",
+          "label": "Alamat Pihak Kedua",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap pihak kedua sesuai KTP/akta pendirian."
+          }
+        },
+        {
+          "name": "judul_kerjasama",
+          "label": "Judul/Nama Kerjasama",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Judul atau nama proyek/kegiatan kerjasama yang akan dilaksanakan."
+          }
+        },
+        {
+          "name": "ruang_lingkup",
+          "label": "Ruang Lingkup Kerjasama",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "min_length": 50,
+            "description": "Uraian detail mengenai ruang lingkup, batasan, dan cakupan kerjasama."
+          }
+        },
+        {
+          "name": "hak_kewajiban_pihak1",
+          "label": "Hak dan Kewajiban Pihak Pertama",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Rincian hak dan kewajiban yang harus dipenuhi oleh pihak pertama."
+          }
+        },
+        {
+          "name": "hak_kewajiban_pihak2",
+          "label": "Hak dan Kewajiban Pihak Kedua",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Rincian hak dan kewajiban yang harus dipenuhi oleh pihak kedua."
+          }
+        },
+        {
+          "name": "jangka_waktu",
+          "label": "Jangka Waktu Kerjasama",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Periode berlakunya perjanjian kerjasama, termasuk tanggal mulai dan berakhir."
+          }
+        },
+        {
+          "name": "pembagian_keuntungan",
+          "label": "Pembagian Keuntungan",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Mekanisme dan persentase pembagian keuntungan (dan kerugian) antara para pihak."
+          }
+        },
+        {
+          "name": "modal_kerjasama",
+          "label": "Modal Kerjasama",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Rincian kontribusi modal dari masing-masing pihak, baik berupa uang, aset, maupun keahlian."
+          }
+        },
+        {
+          "name": "force_majeure",
+          "label": "Klausul Force Majeure",
+          "type": "text",
+          "required": false,
+          "validation": {
+            "description": "Ketentuan mengenai keadaan kahar/force majeure yang membebaskan para pihak dari kewajiban."
+          }
+        },
+        {
+          "name": "penyelesaian_sengketa",
+          "label": "Penyelesaian Sengketa",
+          "type": "enum",
+          "required": true,
+          "options": ["Musyawarah", "Mediasi", "Arbitrase (BANI)", "Pengadilan Negeri"],
+          "validation": {
+            "description": "Mekanisme penyelesaian sengketa yang disepakati para pihak. Umumnya dimulai dengan musyawarah sebelum ke jalur formal."
+          }
+        },
+        {
+          "name": "domisili_hukum",
+          "label": "Domisili Hukum",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Kantor Kepaniteraan Pengadilan Negeri yang dipilih sebagai domisili hukum tetap."
+          }
+        }
+      ]
+    },
+    {
+      "id": "surat-kuasa",
+      "category": "business",
+      "name_id": "Surat Kuasa",
+      "name_en": "Power of Attorney",
+      "description_id": "Template surat kuasa untuk memberikan wewenang kepada pihak lain untuk bertindak atas nama pemberi kuasa dalam urusan hukum atau bisnis tertentu.",
+      "description_en": "Template for a Power of Attorney authorizing another party to act on behalf of the grantor in specific legal or business matters.",
+      "legal_basis": [
+        "KUHPerdata Pasal 1792 tentang Pemberian Kuasa",
+        "KUHPerdata Pasal 1793 tentang Kuasa Diberikan dan Diterima",
+        "KUHPerdata Pasal 1795 tentang Kuasa Khusus",
+        "KUHPerdata Pasal 1796 tentang Kuasa Umum",
+        "KUHPerdata Pasal 1813-1819 tentang Berakhirnya Kuasa"
+      ],
+      "complexity": "simple",
+      "estimated_cost": {
+        "min": 500000,
+        "max": 2000000,
+        "currency": "IDR",
+        "description": "Rp 500.000 - Rp 2.000.000 (termasuk materai dan legalisasi)"
+      },
+      "fields": [
+        {
+          "name": "nama_pemberi_kuasa",
+          "label": "Nama Pemberi Kuasa",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap pemberi kuasa sesuai KTP."
+          }
+        },
+        {
+          "name": "nik_pemberi",
+          "label": "NIK Pemberi Kuasa",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "pattern": "^[0-9]{16}$",
+            "description": "Nomor Induk Kependudukan 16 digit sesuai KTP pemberi kuasa."
+          }
+        },
+        {
+          "name": "alamat_pemberi",
+          "label": "Alamat Pemberi Kuasa",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap pemberi kuasa sesuai KTP."
+          }
+        },
+        {
+          "name": "nama_penerima_kuasa",
+          "label": "Nama Penerima Kuasa",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap penerima kuasa sesuai KTP."
+          }
+        },
+        {
+          "name": "nik_penerima",
+          "label": "NIK Penerima Kuasa",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "pattern": "^[0-9]{16}$",
+            "description": "Nomor Induk Kependudukan 16 digit sesuai KTP penerima kuasa."
+          }
+        },
+        {
+          "name": "alamat_penerima",
+          "label": "Alamat Penerima Kuasa",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap penerima kuasa sesuai KTP."
+          }
+        },
+        {
+          "name": "jenis_kuasa",
+          "label": "Jenis Kuasa",
+          "type": "enum",
+          "required": true,
+          "options": ["Umum", "Khusus"],
+          "validation": {
+            "description": "Kuasa Umum: untuk tindakan pengurusan umum. Kuasa Khusus: untuk tindakan hukum tertentu yang dirinci secara spesifik (Pasal 1795 KUHPerdata)."
+          }
+        },
+        {
+          "name": "untuk_keperluan",
+          "label": "Untuk Keperluan",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "min_length": 20,
+            "description": "Uraian singkat mengenai keperluan pemberian kuasa."
+          }
+        },
+        {
+          "name": "ruang_lingkup_kuasa",
+          "label": "Ruang Lingkup Kuasa",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "min_length": 30,
+            "description": "Rincian detail tindakan-tindakan yang dikuasakan, termasuk batasan wewenang."
+          }
+        },
+        {
+          "name": "jangka_waktu",
+          "label": "Jangka Waktu Kuasa",
+          "type": "string",
+          "required": false,
+          "validation": {
+            "description": "Periode berlakunya surat kuasa. Jika tidak ditentukan, berlaku sampai dicabut oleh pemberi kuasa (Pasal 1813 KUHPerdata)."
+          }
+        },
+        {
+          "name": "dapat_disubstitusikan",
+          "label": "Dapat Disubstitusikan",
+          "type": "boolean",
+          "required": true,
+          "default": false,
+          "validation": {
+            "description": "Apakah penerima kuasa dapat mengalihkan/mensubstitusikan kuasa kepada pihak lain. Jika true, penerima kuasa dapat melimpahkan kuasa kepada orang lain."
+          }
+        }
+      ]
+    },
+    {
+      "id": "perjanjian-jual-beli",
+      "category": "business",
+      "name_id": "Perjanjian Jual Beli",
+      "name_en": "Sale and Purchase Agreement",
+      "description_id": "Template perjanjian jual beli barang atau jasa antara penjual dan pembeli, mencakup spesifikasi objek, harga, pembayaran, serah terima, dan jaminan.",
+      "description_en": "Template for a sale and purchase agreement of goods or services between seller and buyer, covering object specifications, pricing, payment terms, delivery, and warranties.",
+      "legal_basis": [
+        "KUHPerdata Pasal 1457 tentang Pengertian Jual Beli",
+        "KUHPerdata Pasal 1458 tentang Saat Terjadinya Jual Beli",
+        "KUHPerdata Pasal 1473-1512 tentang Kewajiban Penjual",
+        "KUHPerdata Pasal 1513-1518 tentang Kewajiban Pembeli",
+        "KUHPerdata Pasal 1519-1540 tentang Hak Membeli Kembali"
+      ],
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 1500000,
+        "max": 5000000,
+        "currency": "IDR",
+        "description": "Rp 1.500.000 - Rp 5.000.000 (tergantung nilai transaksi dan notarisasi)"
+      },
+      "fields": [
+        {
+          "name": "nama_penjual",
+          "label": "Nama Penjual",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap penjual (perorangan sesuai KTP atau badan hukum sesuai akta)."
+          }
+        },
+        {
+          "name": "alamat_penjual",
+          "label": "Alamat Penjual",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap penjual."
+          }
+        },
+        {
+          "name": "nama_pembeli",
+          "label": "Nama Pembeli",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap pembeli (perorangan sesuai KTP atau badan hukum sesuai akta)."
+          }
+        },
+        {
+          "name": "alamat_pembeli",
+          "label": "Alamat Pembeli",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Alamat lengkap pembeli."
+          }
+        },
+        {
+          "name": "objek_jual_beli",
+          "label": "Objek Jual Beli",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Deskripsi umum barang/jasa yang menjadi objek perjanjian jual beli."
+          }
+        },
+        {
+          "name": "spesifikasi_objek",
+          "label": "Spesifikasi Objek",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Rincian spesifikasi teknis, jumlah, kualitas, merek, tipe, dan kondisi objek jual beli."
+          }
+        },
+        {
+          "name": "harga",
+          "label": "Harga",
+          "type": "number",
+          "required": true,
+          "validation": {
+            "minimum": 0,
+            "description": "Harga jual beli dalam Rupiah (IDR). Harga harus disepakati kedua belah pihak (Pasal 1457 KUHPerdata)."
+          }
+        },
+        {
+          "name": "cara_pembayaran",
+          "label": "Cara Pembayaran",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Mekanisme pembayaran: tunai, transfer bank, cicilan/termin, LC, atau metode lainnya. Sertakan detail rekening tujuan jika diperlukan."
+          }
+        },
+        {
+          "name": "jadwal_serah_terima",
+          "label": "Jadwal Serah Terima",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Tanggal, tempat, dan mekanisme serah terima objek jual beli, termasuk prosedur inspeksi/pemeriksaan."
+          }
+        },
+        {
+          "name": "jaminan_penjual",
+          "label": "Jaminan Penjual",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Pernyataan jaminan/garansi dari penjual mengenai kondisi, keaslian, legalitas, dan kebebasan objek dari sengketa."
+          }
+        },
+        {
+          "name": "ketentuan_pembatalan",
+          "label": "Ketentuan Pembatalan",
+          "type": "text",
+          "required": false,
+          "validation": {
+            "description": "Syarat-syarat dan prosedur pembatalan perjanjian, termasuk konsekuensi hukum dan pengembalian."
+          }
+        },
+        {
+          "name": "denda_keterlambatan",
+          "label": "Denda Keterlambatan",
+          "type": "text",
+          "required": false,
+          "validation": {
+            "description": "Besaran denda atau penalti atas keterlambatan pembayaran atau penyerahan objek. Umumnya dalam persentase per hari/minggu/bulan."
+          }
+        }
+      ]
+    },
+    {
+      "id": "non-disclosure-agreement",
+      "category": "business",
+      "name_id": "Perjanjian Kerahasiaan (NDA)",
+      "name_en": "Non-Disclosure Agreement (NDA)",
+      "description_id": "Template perjanjian kerahasiaan untuk melindungi informasi rahasia yang dibagikan antara para pihak dalam konteks bisnis, termasuk definisi informasi rahasia, jangka waktu, dan sanksi pelanggaran.",
+      "description_en": "Template for a non-disclosure agreement to protect confidential information shared between parties in a business context, including definition of confidential information, duration, and breach penalties.",
+      "legal_basis": [
+        "KUHPerdata Pasal 1338 tentang Asas Kebebasan Berkontrak",
+        "UU No. 30 Tahun 2000 tentang Rahasia Dagang"
+      ],
+      "complexity": "moderate",
+      "estimated_cost": {
+        "min": 1000000,
+        "max": 4000000,
+        "currency": "IDR",
+        "description": "Rp 1.000.000 - Rp 4.000.000"
+      },
+      "fields": [
+        {
+          "name": "nama_pihak1",
+          "label": "Nama Pihak Pertama (Pengungkap)",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap pihak yang mengungkapkan informasi rahasia."
+          }
+        },
+        {
+          "name": "nama_pihak2",
+          "label": "Nama Pihak Kedua (Penerima)",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Nama lengkap pihak yang menerima informasi rahasia."
+          }
+        },
+        {
+          "name": "definisi_informasi_rahasia",
+          "label": "Definisi Informasi Rahasia",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "min_length": 50,
+            "description": "Uraian rinci mengenai jenis dan kategori informasi yang dianggap rahasia, termasuk data teknis, komersial, finansial, dan informasi lain yang dilindungi."
+          }
+        },
+        {
+          "name": "jangka_waktu",
+          "label": "Jangka Waktu Kerahasiaan",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Durasi kewajiban menjaga kerahasiaan, biasanya 2-5 tahun sejak ditandatangani atau sejak berakhirnya hubungan bisnis."
+          }
+        },
+        {
+          "name": "pengecualian",
+          "label": "Pengecualian Informasi Rahasia",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Informasi yang dikecualikan dari kewajiban kerahasiaan, misalnya: sudah menjadi milik umum, diperoleh secara independen, diwajibkan oleh hukum/pengadilan."
+          }
+        },
+        {
+          "name": "sanksi_pelanggaran",
+          "label": "Sanksi Pelanggaran",
+          "type": "text",
+          "required": true,
+          "validation": {
+            "description": "Konsekuensi hukum dan finansial atas pelanggaran kerahasiaan, termasuk ganti rugi dan tindakan hukum yang dapat diambil."
+          }
+        },
+        {
+          "name": "hukum_yang_berlaku",
+          "label": "Hukum yang Berlaku",
+          "type": "string",
+          "required": true,
+          "default": "Hukum Negara Republik Indonesia",
+          "validation": {
+            "description": "Hukum negara yang berlaku untuk perjanjian ini."
+          }
+        },
+        {
+          "name": "yurisdiksi",
+          "label": "Yurisdiksi",
+          "type": "string",
+          "required": true,
+          "validation": {
+            "description": "Pengadilan atau badan arbitrase yang berwenang menyelesaikan sengketa terkait perjanjian ini."
+          }
+        }
+      ]
+    }
+  ]
+}
