@@ -18,7 +18,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">⚖️</span>
+              <span className="text-2xl"></span>
               <span className="font-bold text-xl text-blue-900">
                 AI Lawyer
               </span>
@@ -33,11 +33,14 @@ export default function Home() {
               <a href="#categories" className="text-gray-600 hover:text-blue-700 text-sm font-medium">
                 Kategori Hukum
               </a>
+              <a href="./templates" className="text-gray-600 hover:text-blue-700 text-sm font-medium">
+                Template Dokumen
+              </a>
+              <a href="./knowledge" className="text-gray-600 hover:text-blue-700 text-sm font-medium">
+                Basis Pengetahuan
+              </a>
               <a href="#pricing" className="text-gray-600 hover:text-blue-700 text-sm font-medium">
                 Harga
-              </a>
-              <a href="#lawyers" className="text-gray-600 hover:text-blue-700 text-sm font-medium">
-                Advokat
               </a>
             </div>
             <div className="flex items-center gap-3">
