@@ -3,12 +3,17 @@ AI Chat Endpoint - The Core AI Legal Assistant
 Handles user legal questions in Bahasa Indonesia using Azure OpenAI + RAG
 """
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 from enum import Enum
 import uuid
+
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.core.database import get_db
+from app.models.query_log import QueryLog
 
 router = APIRouter()
 
@@ -223,7 +228,7 @@ CATEGORY_TEMPLATES = {
 # ── Endpoints ──────────────────────────────────────────────────────────────
 
 @router.post("/", response_model=ChatResponse)
-async def send_message(request: ChatRequest):
+async def send_message(request: ChatRequest, db: AsyncSession = Depends(get_db)):
     """
     Send a legal question to the AI assistant.
     
@@ -242,12 +247,6 @@ async def send_message(request: ChatRequest):
     # Get suggested templates based on category
     suggested_templates = CATEGORY_TEMPLATES.get(triage.category, [])
     
-    # TODO: In production, this would:
-    # 1. Retrieve relevant legal documents from Qdrant (RAG)
-    # 2. Build context with conversation history
-    # 3. Call Azure OpenAI GPT-4o with system prompt + context + user question
-    # 4. Parse response and extract legal references
-    
     # For MVP demo, generate a structured response
     response_message = _generate_demo_response(request.message, triage, request.language)
     
@@ -265,6 +264,19 @@ async def send_message(request: ChatRequest):
         else "⚠️ This is general information, not legal advice. "
              "For official legal advice, please consult with a licensed Advocate (Advokat)."
     )
+
+    # Log the query for later review and analysis
+    log_entry = QueryLog(
+        conversation_id=conversation_id,
+        message=request.message,
+        language=request.language,
+        category=triage.category,
+        complexity=triage.complexity,
+        recommendation=triage.recommendation,
+        confidence=triage.confidence,
+        response_preview=response_message[:500],
+    )
+    db.add(log_entry)
     
     return ChatResponse(
         conversation_id=conversation_id,
