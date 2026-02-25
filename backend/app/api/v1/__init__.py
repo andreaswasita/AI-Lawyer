@@ -1,13 +1,15 @@
-"""AI Lawyer API v1 Package"""
+from flask import Blueprint
 
-from fastapi import APIRouter
-from app.api.v1.endpoints import chat, documents, templates, auth, lawyers, health
+v1_bp = Blueprint('v1', __name__)
 
-router = APIRouter()
+from app.api.v1.auth import auth_bp
+from app.api.v1.chat import chat_bp
+from app.api.v1.documents import documents_bp
+from app.api.v1.lawyers import lawyers_bp
+from app.api.v1.health import health_bp
 
-router.include_router(health.router, prefix="/health", tags=["Health"])
-router.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-router.include_router(chat.router, prefix="/chat", tags=["AI Chat"])
-router.include_router(documents.router, prefix="/documents", tags=["Documents"])
-router.include_router(templates.router, prefix="/templates", tags=["Templates"])
-router.include_router(lawyers.router, prefix="/lawyers", tags=["Lawyers"])
+v1_bp.register_blueprint(auth_bp, url_prefix='/auth')
+v1_bp.register_blueprint(chat_bp, url_prefix='/chat')
+v1_bp.register_blueprint(documents_bp, url_prefix='/documents')
+v1_bp.register_blueprint(lawyers_bp, url_prefix='/lawyers')
+v1_bp.register_blueprint(health_bp, url_prefix='/health')
