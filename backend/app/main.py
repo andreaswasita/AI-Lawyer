@@ -3,7 +3,8 @@ AI Lawyer Backend - Main FastAPI Application
 Hukum AI: Democratizing Legal Services for Indonesia
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from loguru import logger
@@ -11,6 +12,12 @@ import sys
 
 from app.config import get_settings
 from app.api.v1 import router as api_v1_router
+from app.middleware.logging import QueryLoggingMiddleware
+from app.middleware.error_handlers import (
+    http_exception_handler,
+    validation_exception_handler,
+    unhandled_exception_handler,
+)
 
 settings = get_settings()
 
@@ -70,6 +77,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Query logging middleware (added after CORS so it runs on every request)
+app.add_middleware(QueryLoggingMiddleware)
+
+# Global exception handlers
+app.add_exception_handler(HTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(Exception, unhandled_exception_handler)
 
 # Register API routers
 app.include_router(api_v1_router, prefix=settings.api_prefix)
